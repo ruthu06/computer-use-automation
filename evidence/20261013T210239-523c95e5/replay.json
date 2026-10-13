@@ -1,0 +1,11 @@
+{
+  "outcome" : "success",
+  "runId" : "20261013T210239-523c95e5",
+  "capabilityId" : "parabank.read-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "outputs" : {
+    "balance" : "$515.50",
+    "accountNumber" : "45978"
+  }
+}

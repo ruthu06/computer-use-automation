@@ -1,0 +1,36 @@
+{
+    "id": "20261013T201137-c0bb5a21",
+    "state": "FINISHED",
+    "intervention": null,
+    "humanTurns": [
+        {
+            "note": "pressed it myself",
+            "locationBefore": "http://localhost:8080/parabank/openaccount.htm",
+            "locationAfter": "http://localhost:8080/parabank/openaccount.htm",
+            "events": [
+                "clicked input \"Open New Account\""
+            ],
+            "startedAt": "2026-10-13T20:11:57.840152Z",
+            "endedAt": "2026-10-13T20:12:23.613028Z"
+        }
+    ],
+    "result": {
+        "runId": "20261013T201137-c0bb5a21",
+        "capabilityId": "parabank.open-savings-account",
+        "capabilityVersion": "1.0.0",
+        "recoveries": [],
+        "outputs": {
+            "newAccountNumber": "35322"
+        }
+    },
+    "resultType": "Success",
+    "error": null,
+    "history": [
+        "AUTOMATION",
+        "PAUSED",
+        "HUMAN",
+        "RESUMING",
+        "AUTOMATION",
+        "FINISHED"
+    ]
+}

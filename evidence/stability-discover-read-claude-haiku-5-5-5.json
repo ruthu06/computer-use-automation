@@ -1,0 +1,13 @@
+{
+  "what" : "discovery of a read-only goal",
+  "model" : "claude-haiku-5-5",
+  "trials" : 5,
+  "succeeded" : 5,
+  "secondsMin" : 10.2,
+  "secondsMedian" : 11.9,
+  "secondsMax" : 12.9,
+  "avgModelCalls" : 6.0,
+  "avgTokensIn" : 10189,
+  "avgTokensOut" : 1138,
+  "failures" : [ ]
+}

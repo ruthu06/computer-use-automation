@@ -1,0 +1,13 @@
+{
+  "what" : "discovery of a goal with a risky click",
+  "model" : "claude-sonnet-5-5",
+  "trials" : 3,
+  "succeeded" : 3,
+  "secondsMin" : 19.5,
+  "secondsMedian" : 22.4,
+  "secondsMax" : 25.9,
+  "avgModelCalls" : 9.0,
+  "avgTokensIn" : 15320,
+  "avgTokensOut" : 1346,
+  "failures" : [ ]
+}

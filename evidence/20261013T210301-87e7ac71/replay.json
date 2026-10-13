@@ -1,0 +1,15 @@
+{
+  "outcome" : "failure",
+  "runId" : "20261013T210301-87e7ac71",
+  "capabilityId" : "parabank.read-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "kind" : "TARGET_NOT_FOUND",
+  "stepId" : "step-6-read",
+  "expected" : "to find cell Balance (removed)",
+  "observed" : "No locator matched \"cell Balance (removed)\" (tried 2) (page: http://localhost:8080/parabank/overview.htm)",
+  "evidence" : {
+    "screenshot" : "evidence/20261013T210301-87e7ac71/replay-20261013T210301-87e7ac71-step-6-read.png",
+    "snapshot" : "evidence/20261013T210301-87e7ac71/replay-20261013T210301-87e7ac71-step-6-read.txt"
+  }
+}

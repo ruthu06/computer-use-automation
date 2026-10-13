@@ -1,0 +1,13 @@
+{
+  "what" : "discovery of a read-only goal",
+  "model" : "claude-sonnet-5-5",
+  "trials" : 5,
+  "succeeded" : 5,
+  "secondsMin" : 14.3,
+  "secondsMedian" : 15.5,
+  "secondsMax" : 23.5,
+  "avgModelCalls" : 6.0,
+  "avgTokensIn" : 10073,
+  "avgTokensOut" : 930,
+  "failures" : [ ]
+}

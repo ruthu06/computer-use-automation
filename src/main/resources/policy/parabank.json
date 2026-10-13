@@ -1,0 +1,20 @@
+{
+  "allowedOrigins" : [ "http://localhost:8080" ],
+  "allowedPaths" : [
+    "/parabank/index.htm",
+    "/parabank/initializeDB.htm",
+    "/parabank/login.htm",
+    "/parabank/overview.htm",
+    "/parabank/openaccount.htm",
+    "/parabank/activity.htm",
+    "/parabank/logout.htm"
+  ],
+  "allowedActions" : [ "NAVIGATE", "CLICK", "TYPE", "SELECT", "READ", "WAIT" ],
+  "riskyActions" : [ {
+    "action" : "CLICK",
+    "path"   : "/parabank/openaccount.htm",
+    "role"   : "button",
+    "name"   : "(?i)^open new account$",
+    "reason" : "Opens a real account and moves funds into it — cannot be undone from the UI"
+  } ]
+}

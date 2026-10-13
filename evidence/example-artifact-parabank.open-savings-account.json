@@ -1,0 +1,203 @@
+{
+  "schemaVersion" : "1.0",
+  "id" : "parabank.open-savings-account",
+  "version" : "1.0.0",
+  "name" : "Open a savings account",
+  "description" : "Logs in to ParaBank, opens a new savings account, and returns its account number.",
+  "app" : {
+    "product" : "ParaBank",
+    "productVersion" : "2.1.0",
+    "surface" : "web",
+    "entryPath" : "/parabank/index.htm"
+  },
+  "inputs" : [ {
+    "name" : "username",
+    "type" : "STRING",
+    "description" : "The caller's username",
+    "required" : true,
+    "sensitive" : false,
+    "allowedValues" : [ ]
+  }, {
+    "name" : "password",
+    "type" : "STRING",
+    "description" : "The caller's password",
+    "required" : true,
+    "sensitive" : true,
+    "allowedValues" : [ ]
+  } ],
+  "outputs" : [ {
+    "name" : "newAccountNumber",
+    "type" : "STRING",
+    "description" : "Read from the screen: newAccountNumber",
+    "sensitive" : false
+  } ],
+  "steps" : [ {
+    "id" : "step-1-navigate",
+    "description" : "open the application",
+    "action" : "NAVIGATE",
+    "target" : null,
+    "value" : "/parabank/index.htm",
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-2-type",
+    "description" : "Enter the username in the first login field.",
+    "action" : "TYPE",
+    "target" : {
+      "name" : "textbox Username",
+      "locators" : [ {
+        "by" : "label",
+        "text" : "Username",
+        "role" : "textbox"
+      }, {
+        "by" : "structure",
+        "path" : "input[name='username']"
+      } ]
+    },
+    "value" : "{{username}}",
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-3-type",
+    "description" : "Enter the password in the password field.",
+    "action" : "TYPE",
+    "target" : {
+      "name" : "textbox Password",
+      "locators" : [ {
+        "by" : "label",
+        "text" : "Password",
+        "role" : "textbox"
+      }, {
+        "by" : "structure",
+        "path" : "input[name='password']"
+      } ]
+    },
+    "value" : "{{password}}",
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-4-click",
+    "description" : "Username and password are entered, so submit the login form.",
+    "action" : "CLICK",
+    "target" : {
+      "name" : "button Log In",
+      "locators" : [ {
+        "by" : "role",
+        "role" : "button",
+        "name" : "Log In"
+      }, {
+        "by" : "structure",
+        "path" : "[id='loginPanel'] > form:nth-of-type(1) > div:nth-of-type(3) > input:nth-of-type(1)"
+      } ]
+    },
+    "value" : null,
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-5-click",
+    "description" : "Login worked, so go to the Open New Account page.",
+    "action" : "CLICK",
+    "target" : {
+      "name" : "link Open New Account",
+      "locators" : [ {
+        "by" : "role",
+        "role" : "link",
+        "name" : "Open New Account"
+      }, {
+        "by" : "structure",
+        "path" : "[id='leftPanel'] > ul:nth-of-type(1) > li:nth-of-type(1) > a:nth-of-type(1)"
+      } ]
+    },
+    "value" : null,
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-6-select",
+    "description" : "Choose the SAVINGS account type.",
+    "action" : "SELECT",
+    "target" : {
+      "name" : "combobox What type of Account would you like to open?",
+      "locators" : [ {
+        "by" : "label",
+        "text" : "What type of Account would you like to open?",
+        "role" : "combobox"
+      }, {
+        "by" : "structure",
+        "path" : "[id='type']"
+      } ]
+    },
+    "value" : "SAVINGS",
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : null
+  }, {
+    "id" : "step-7-click",
+    "description" : "SAVINGS is selected and a funding account is set, so submit the form.",
+    "action" : "CLICK",
+    "target" : {
+      "name" : "button Open New Account",
+      "locators" : [ {
+        "by" : "role",
+        "role" : "button",
+        "name" : "Open New Account"
+      }, {
+        "by" : "structure",
+        "path" : "[id='openAccountForm'] > form:nth-of-type(1) > div:nth-of-type(1) > input:nth-of-type(1)"
+      } ]
+    },
+    "value" : null,
+    "output" : null,
+    "risk" : "RISKY",
+    "expect" : null
+  }, {
+    "id" : "step-8-wait",
+    "description" : "The form was submitted but no confirmation is showing yet, so wait for it to load.",
+    "action" : "WAIT",
+    "target" : null,
+    "value" : null,
+    "output" : null,
+    "risk" : "SAFE",
+    "expect" : {
+      "kind" : "textVisible",
+      "text" : "Account Opened"
+    }
+  }, {
+    "id" : "step-9-read",
+    "description" : "The confirmation is showing, so read the new account number.",
+    "action" : "READ",
+    "target" : {
+      "name" : "link [newAccountNumber]",
+      "locators" : [ {
+        "by" : "structure",
+        "path" : "[id='newAccountId']"
+      } ]
+    },
+    "value" : null,
+    "output" : "newAccountNumber",
+    "risk" : "SAFE",
+    "expect" : null
+  } ],
+  "outcomes" : [ {
+    "code" : "INVALID_CREDENTIALS",
+    "description" : "The bank rejected the login",
+    "when" : {
+      "kind" : "textVisible",
+      "text" : "The username and password could not be verified."
+    }
+  } ],
+  "successCondition" : {
+    "kind" : "locationContains",
+    "value" : "/parabank/openaccount.htm"
+  },
+  "provenance" : {
+    "source" : "DISCOVERY",
+    "runId" : "20261013T195157-871868ad",
+    "model" : "claude-opus-5-5",
+    "recordedAt" : "2026-10-13T19:52:37.420916Z"
+  }
+}

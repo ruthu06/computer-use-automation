@@ -1,0 +1,14 @@
+{
+  "status" : "COMPLETED",
+  "message" : "The page says the account is open and the new account number has been read, so the goal is done.",
+  "outputs" : {
+    "newAccountNumber" : "22446"
+  },
+  "savedAs" : "parabank.open-savings-account",
+  "usage" : {
+    "calls" : 9,
+    "inputTokens" : 15611,
+    "outputTokens" : 1453
+  },
+  "seconds" : 38.0
+}

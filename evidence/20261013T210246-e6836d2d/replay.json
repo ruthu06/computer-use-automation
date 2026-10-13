@@ -1,0 +1,15 @@
+{
+  "outcome" : "failure",
+  "runId" : "20261013T210246-e6836d2d",
+  "capabilityId" : "parabank.open-savings-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "kind" : "NO_HUMAN_RESPONSE",
+  "stepId" : "step-7-click",
+  "expected" : "a person to answer",
+  "observed" : "no person answered in time, so the run was stopped. Nothing was done on this step: Opens a real account and moves funds into it — cannot be undone from the UI (page: http://localhost:8080/parabank/openaccount.htm)",
+  "evidence" : {
+    "screenshot" : "evidence/20261013T210246-e6836d2d/replay-20261013T210246-e6836d2d-step-7-click.png",
+    "snapshot" : "evidence/20261013T210246-e6836d2d/replay-20261013T210246-e6836d2d-step-7-click.txt"
+  }
+}

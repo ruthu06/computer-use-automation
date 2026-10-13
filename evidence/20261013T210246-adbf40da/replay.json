@@ -1,0 +1,15 @@
+{
+  "outcome" : "success",
+  "runId" : "20261013T210246-adbf40da",
+  "capabilityId" : "parabank.read-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ {
+    "stepId" : "step-4-click",
+    "condition" : "the preferred locator (role and name) did not match; the control was found by locator 2 of 3 (role and name)",
+    "response" : "used the fallback locator and carried on; the page may have changed since recording"
+  } ],
+  "outputs" : {
+    "balance" : "$515.50",
+    "accountNumber" : "46200"
+  }
+}

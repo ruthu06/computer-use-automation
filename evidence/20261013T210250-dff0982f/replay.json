@@ -1,0 +1,15 @@
+{
+  "outcome" : "failure",
+  "runId" : "20261013T210250-dff0982f",
+  "capabilityId" : "parabank.open-savings-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "kind" : "HUMAN_STEP_NOT_DONE",
+  "stepId" : "step-7-click",
+  "expected" : "text \"Account Opened\" is visible",
+  "observed" : "a person handed the window back, but the result of this step was not seen on the page. Stopped rather than assume it was done. (page: http://localhost:8080/parabank/openaccount.htm)",
+  "evidence" : {
+    "screenshot" : "evidence/20261013T210250-dff0982f/replay-20261013T210250-dff0982f-step-7-click.png",
+    "snapshot" : "evidence/20261013T210250-dff0982f/replay-20261013T210250-dff0982f-step-7-click.txt"
+  }
+}

@@ -1,0 +1,79 @@
+location: http://localhost:8080/parabank/overview.htm
+title: ParaBank | Accounts Overview
+
+controls:
+e1 link "About Us"
+e2 link "Services"
+e3 link "Products"
+e4 link "Locations"
+e5 link "Admin Page"
+e6 link "home"
+e7 link "about"
+e8 link "contact"
+e9 heading "Account Services"
+e10 link "Open New Account"
+e11 link "Accounts Overview"
+e12 link "Transfer Funds"
+e13 link "Bill Pay"
+e14 link "Find Transactions"
+e15 link "Update Contact Info"
+e16 link "Request Loan"
+e17 link "Log Out"
+e18 heading "Accounts Overview"
+e19 cell "22224"
+e20 link "22224"
+e21 cell "$515.50"
+e22 cell "$515.50"
+e23 cell "Total"
+e24 cell "$515.50"
+e25 cell "*Balance includes deposits that may be subject to holds"
+e26 link "Home"
+e27 link "About Us"
+e28 link "Services"
+e29 link "Products"
+e30 link "Locations"
+e31 link "Site Map"
+e32 link "Contact Us"
+e33 link "www.parasoft.com"
+
+visible text:
+Experience the difference
+
+Solutions
+About Us
+Services
+Products
+Locations
+Admin Page
+home
+about
+contact
+
+Welcome Replay Test
+
+Account Services
+Open New Account
+Accounts Overview
+Transfer Funds
+Bill Pay
+Find Transactions
+Update Contact Info
+Request Loan
+Log Out
+Accounts Overview
+Account	Balance*	Available Amount
+22224	$515.50	$515.50
+Total	$515.50	 
+*Balance includes deposits that may be subject to holds
+Home|
+About Us|
+Services|
+Products|
+Locations|
+Site Map|
+Contact Us
+
+© Parasoft. All rights reserved.
+
+Visit us at:
+www.parasoft.com

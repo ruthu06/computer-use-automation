@@ -1,0 +1,18 @@
+# Build output
+target/
+
+# Where the service and the live tests write every run by default. The runs worth showing
+# are kept in /evidence/, which is tracked.
+/runs/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+CLAUDE.md

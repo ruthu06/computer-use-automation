@@ -1,0 +1,37 @@
+{
+    "_note": "Excerpt of the session view the author pasted after taking over the window and doing 'random things'. The first lines (id, state, intervention) were not part of the paste. The run's own record is evidence/20261013T201648-2ea724ea/replay.json on the author's machine, which is git-ignored.",
+    "humanTurns": [
+        {
+            "note": "pressed it myself",
+            "locationBefore": "http://localhost:8080/parabank/openaccount.htm",
+            "locationAfter": "http://localhost:8080/parabank/openaccount.htm",
+            "events": [],
+            "startedAt": "2026-10-13T20:16:55.255686Z",
+            "endedAt": "2026-10-13T20:17:49.813365Z"
+        }
+    ],
+    "result": {
+        "runId": "20261013T201648-2ea724ea",
+        "capabilityId": "parabank.open-savings-account",
+        "capabilityVersion": "1.0.0",
+        "recoveries": [],
+        "kind": "EXPECTATION_NOT_MET",
+        "stepId": "step-8-wait",
+        "expected": "text \"Account Opened\" is visible",
+        "observed": "timed out waiting until text \"Account Opened\" is visible (page: http://localhost:8080/parabank/openaccount.htm)",
+        "evidence": {
+            "screenshot": "evidence/20261013T201648-2ea724ea/replay-20261013T201648-2ea724ea-step-8-wait.png",
+            "snapshot": "evidence/20261013T201648-2ea724ea/replay-20261013T201648-2ea724ea-step-8-wait.txt"
+        }
+    },
+    "resultType": "Failure",
+    "error": null,
+    "history": [
+        "AUTOMATION",
+        "PAUSED",
+        "HUMAN",
+        "RESUMING",
+        "AUTOMATION",
+        "FINISHED"
+    ]
+}

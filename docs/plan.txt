@@ -1,0 +1,184 @@
+Computer-Use Automation System
+Implementation plan for the interface.ai take-home assignment. Date: October 7, 2026 Status: Plan only. Implementation has not started.
+In one sentence: Claude looks at a real local banking website once, figures out how to complete a task, and we save those steps as a reusable recipe that Playwright can repeat later without AI.
+1. What we are building
+A bank's AI agent needs hands to operate old internal applications that have no API. The only way in is to drive the screen the way a person would. This system does that in two phases:
+	•	Discovery (once): Claude looks at the screen, decides the next click or keystroke, and repeats until the goal is done.
+	•	Replay (many times): The successful run is saved as a structured recipe, called an artifact. Later runs follow that recipe with no AI in the decision loop.
+The assignment's rule: The model discovers. The artifact becomes a reusable capability. Deterministic replay is how the agent invokes it in production.
+2. The four pieces
+Piece
+What it is
+What we do
+ParaBank
+An existing open-source banking demo
+Run it locally in Docker. We do not build it, and we do not read its source during discovery.
+Claude
+The brain
+During discovery only, it looks at the page and chooses the next action.
+Playwright for Java
+The hands
+Opens the browser, clicks, types, waits, and reads the screen. We use Playwright. We do not rebuild it.
+Our Java system
+The product being evaluated
+Connects the pieces, checks safety, saves the artifact, replays it, handles errors, and lets a human take over.
+3. Decisions and why
+Decision
+Choice
+Why
+Language
+Java 21 + Spring Boot
+This is a backend integration layer. Java is a credible enterprise choice, and Spring gives a small REST boundary without extra services.
+Browser control
+Playwright for Java
+It can observe the page, click, type, screenshot, and wait. Discovery and replay both go through one Surface interface so a desktop driver could be added later.
+AI model
+Anthropic Claude
+A real LLM-driven discovery run is required. Claude's structured tool calls keep every action typed, checkable, and recordable.
+Target application
+Official ParaBank Docker image, pinned and local
+Claude must figure out an unfamiliar banking UI. A custom toy site would be too easy and would waste time. Local Docker is repeatable and avoids the public shared site.
+Errors
+Real ParaBank outcomes plus one injected slow or failed load
+We need repeatable proof of business outcomes, recoverable problems, and hard failures without modifying ParaBank.
+Architecture
+One process, synchronous API, files on disk
+The brief says not to build queues, clusters, or multi-tenant infrastructure. Design the seams; do not build the scale-out.
+Stretch goals
+Parked
+Complete the required end-to-end slice first.
+4. How a run works
+	•	A caller sends a goal, such as: "Log in, open a new savings account, and return the new account number and displayed balance."
+	•	Playwright opens the local ParaBank page and captures what is on screen.
+	•	Sensitive values are redacted, then the observation is sent to Claude.
+	•	Claude returns exactly one action: click, type, select, read, wait, complete, or request a human.
+	•	A policy check decides whether that action is allowed.
+	•	Playwright performs the action on the same browser session.
+	•	The loop repeats until success, a known business outcome, a hard failure, or a stop condition.
+	•	A successful discovery is compiled into a versioned JSON artifact.
+	•	Later, replay loads that artifact and repeats the steps with no Claude calls.
+5. What each part does
+5.1 ParaBank target
+	•	Start a pinned official image and expose it only on localhost.
+	•	Reset the container or register a uniquely named synthetic user.
+	•	Primary flow: login, open a new savings account, return the account number and balance.
+	•	Claude sees only the live screen. It does not receive source code or a prewritten click path.
+	•	Error cases: bad login as a business outcome; one slowed page as recoverable; one missing control as a hard failure.
+5.2 Surface
+One interface: observe, act, and wait. The web version uses Playwright. The artifact and replay engine do not know they are talking to a browser, so a desktop driver could be added later.
+5.3 Discovery loop
+Each turn is observe, redact, ask Claude, check policy, act, and log. Stop on a verified checkpoint, too many steps, a timeout, or a repeated screen. Claude may not leave the allowlist, call ParaBank's API, or submit a risky final action without approval.
+5.4 Artifact
+The JSON recipe contains identity and version, typed inputs, typed outputs, ordered steps, a success condition, and redaction rules. Each step tries locators in this order: accessible role and name, visible label, structural path, then screenshot coordinates.
+5.5 Replay
+Result
+Example
+What happens
+Success
+New savings account opened
+Return the declared outputs.
+Business outcome
+Invalid login
+Return it as a legitimate answer, not a crash.
+Recoverable
+Page is temporarily slow
+Wait or retry, then continue.
+Hard failure
+Expected control never appears
+Stop and report the step, expectation, and observation.
+5.6 Safety
+	•	Allowlist of addresses, routes, and action types, enforced during discovery and replay.
+	•	The click that opens an account pauses for explicit human approval.
+	•	Passwords, tokens, and personal data are redacted from artifacts and logs.
+5.7 Evidence
+Every run writes a structured log. Failures also save a screenshot and page snapshot under /evidence/. The submission includes discovery, successful replay, and one error replay.
+5.8 Human takeover
+	•	Create an intervention request with the step, screenshot, and reason.
+	•	Release the same live browser to the person.
+	•	Record what the person did.
+	•	Hand control back and continue.
+Session states: AUTOMATION, PAUSED, HUMAN, RESUMING.
+5.9 API
+	•	POST /discover
+	•	GET /capabilities and GET /capabilities/{id}
+	•	POST /capabilities/{id}/replay
+	•	POST /sessions/{id}/takeover and POST /sessions/{id}/resume
+6. What we will not build
+	•	A custom banking website.
+	•	A full operator console. Control transfer is real; the console stays minimal.
+	•	A desktop driver. The design leaves room for one.
+	•	Queues, clusters, or multi-tenant infrastructure.
+	•	Optional stretch goals, until the required slice is done.
+7. Build order
+Step
+Work
+Hours
+Done when
+1
+Java project, pinned ParaBank, Playwright, one manual flow
+2-3
+A fresh clone can start the target.
+2
+Contracts for surface, artifact, results, and policy
+3-5
+JSON validates and redaction tests pass.
+3
+Playwright surface and evidence
+4-6
+A non-AI smoke test can log in.
+4
+Claude discovery loop
+5-8
+Claude completes the goal from the screen alone.
+5
+Compile the trace into an artifact
+3-5
+Secrets are redacted and the schema validates.
+6
+Deterministic replay
+6-9
+Replay makes zero Claude calls.
+7
+Business, recoverable, and hard-failure paths
+3-5
+Each path returns the correct result.
+8
+Safety and same-session handoff
+5-8
+A person can act and automation resumes.
+9
+Tests, evidence, README, REPORT
+5-8
+A reviewer can follow the demo.
+8. Time estimate with Claude helping write the code
+Level
+Time
+Meaning
+Minimum slice
+28-34 hours, about 4-5 days
+Every requirement is touched, with little debugging room.
+Expected
+36-52 hours, about 5-7 days
+Focused work at 7-8 hours per day.
+Strong submission
+42-55 hours, about 6-8 days
+Recommended. Judgment, reliability, and evidence matter most.
+Buffer
+One extra day
+Docker, Playwright on Windows, API setup, and evidence reruns.
+9. Downloads and setup
+	•	Java 21 JDK. Eclipse Temurin 21 is recommended. Check java -version and javac -version.
+	•	Docker Desktop for Windows with WSL 2 and Compose.
+	•	Git for Windows.
+	•	Anthropic API key, stored as ANTHROPIC_API_KEY and never committed.
+	•	Cursor extensions: Extension Pack for Java, Spring Boot Extension Pack, Docker, and YAML.
+	•	A GitHub account that can create a public repository.
+Do not install Node.js, a database, ParaBank source code, or Kubernetes. Maven Wrapper and Playwright's browser are added with the project.
+Suggested folder: C:\Projects\computer-use-automation
+10. Checklist before coding
+	•	Java 21 works from PowerShell.
+	•	Docker Desktop is running.
+	•	Git identity is configured.
+	•	The Anthropic key is set and will not be committed.
+	•	GitHub can host a public repository.
+	•	The chosen Claude model supports structured tool use from Java.

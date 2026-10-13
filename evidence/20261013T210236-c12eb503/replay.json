@@ -1,0 +1,10 @@
+{
+  "outcome" : "success",
+  "runId" : "20261013T210236-c12eb503",
+  "capabilityId" : "parabank.open-savings-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "outputs" : {
+    "newAccountNumber" : "45756"
+  }
+}

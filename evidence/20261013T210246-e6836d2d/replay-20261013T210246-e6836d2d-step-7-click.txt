@@ -1,0 +1,86 @@
+location: http://localhost:8080/parabank/openaccount.htm
+title: ParaBank | Open Account
+
+controls:
+e1 link "About Us"
+e2 link "Services"
+e3 link "Products"
+e4 link "Locations"
+e5 link "Admin Page"
+e6 link "home"
+e7 link "about"
+e8 link "contact"
+e9 heading "Account Services"
+e10 link "Open New Account"
+e11 link "Accounts Overview"
+e12 link "Transfer Funds"
+e13 link "Bill Pay"
+e14 link "Find Transactions"
+e15 link "Update Contact Info"
+e16 link "Request Loan"
+e17 link "Log Out"
+e18 heading "Open New Account"
+e19 combobox "" value="SAVINGS"
+e20 combobox "" value="46311"
+e21 button "Open New Account"
+e22 link "Home"
+e23 link "About Us"
+e24 link "Services"
+e25 link "Products"
+e26 link "Locations"
+e27 link "Site Map"
+e28 link "Contact Us"
+e29 link "www.parasoft.com"
+
+visible text:
+Experience the difference
+
+Solutions
+About Us
+Services
+Products
+Locations
+Admin Page
+home
+about
+contact
+
+Welcome Replay Test
+
+Account Services
+Open New Account
+Accounts Overview
+Transfer Funds
+Bill Pay
+Find Transactions
+Update Contact Info
+Request Loan
+Log Out
+Open New Account
+
+What type of Account would you like to open?
+
+CHECKING
+SAVINGS
+
+
+
+
+A minimum of $100.00 must be deposited into this account at time of opening. Please choose an existing account to transfer funds into the new account.
+
+46311
+
+
+
+Home|
+About Us|
+Services|
+Products|
+Locations|
+Site Map|
+Contact Us
+
+© Parasoft. All rights reserved.
+
+Visit us at:
+www.parasoft.com

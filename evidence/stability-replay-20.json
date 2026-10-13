@@ -1,0 +1,13 @@
+{
+  "what" : "replay of parabank.read-account",
+  "model" : null,
+  "trials" : 20,
+  "succeeded" : 20,
+  "secondsMin" : 0.3,
+  "secondsMedian" : 0.4,
+  "secondsMax" : 0.6,
+  "avgModelCalls" : 0.0,
+  "avgTokensIn" : 0,
+  "avgTokensOut" : 0,
+  "failures" : [ ]
+}

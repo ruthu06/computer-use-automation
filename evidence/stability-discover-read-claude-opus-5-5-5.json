@@ -1,0 +1,13 @@
+{
+  "what" : "discovery of a read-only goal",
+  "model" : "claude-opus-5-5",
+  "trials" : 5,
+  "succeeded" : 5,
+  "secondsMin" : 17.6,
+  "secondsMedian" : 22.3,
+  "secondsMax" : 30.2,
+  "avgModelCalls" : 6.0,
+  "avgTokensIn" : 10281,
+  "avgTokensOut" : 988,
+  "failures" : [ ]
+}

@@ -1,0 +1,118 @@
+{
+  "schemaVersion" : "1.0",
+  "id" : "parabank.login",
+  "version" : "1.0.0",
+  "name" : "ParaBank Login",
+  "description" : "Log a customer into ParaBank using username and password. Succeeds when the Accounts Overview page is reached. Fails with INVALID_CREDENTIALS if the bank rejects the credentials.",
+  "app" : {
+    "product" : "ParaBank",
+    "productVersion" : "2.1.0",
+    "surface" : "web",
+    "entryPath" : "/parabank/index.htm"
+  },
+  "inputs" : [
+    {
+      "name" : "username",
+      "type" : "STRING",
+      "description" : "The customer's login username",
+      "required" : true,
+      "sensitive" : false,
+      "allowedValues" : []
+    },
+    {
+      "name" : "password",
+      "type" : "STRING",
+      "description" : "The customer's login password",
+      "required" : true,
+      "sensitive" : true,
+      "allowedValues" : []
+    }
+  ],
+  "outputs" : [],
+  "steps" : [
+    {
+      "id" : "navigate-home",
+      "description" : "Open the ParaBank home page",
+      "action" : "NAVIGATE",
+      "target" : null,
+      "value" : "/parabank/index.htm",
+      "output" : null,
+      "risk" : "SAFE",
+      "expect" : {
+        "kind" : "textVisible",
+        "text" : "Customer Login"
+      }
+    },
+    {
+      "id" : "fill-username",
+      "description" : "Type the username into the Username field",
+      "action" : "TYPE",
+      "target" : {
+        "name" : "username-field",
+        "locators" : [
+          { "by" : "label", "text" : "Username", "role" : "textbox" },
+          { "by" : "structure", "path" : "input[name='username']" }
+        ]
+      },
+      "value" : "{{username}}",
+      "output" : null,
+      "risk" : "SAFE",
+      "expect" : null
+    },
+    {
+      "id" : "fill-password",
+      "description" : "Type the password into the Password field",
+      "action" : "TYPE",
+      "target" : {
+        "name" : "password-field",
+        "locators" : [
+          { "by" : "label", "text" : "Password", "role" : "textbox" },
+          { "by" : "structure", "path" : "input[name='password']" }
+        ]
+      },
+      "value" : "{{password}}",
+      "output" : null,
+      "risk" : "SAFE",
+      "expect" : null
+    },
+    {
+      "id" : "click-login",
+      "description" : "Click the Log In button to submit credentials",
+      "action" : "CLICK",
+      "target" : {
+        "name" : "login-button",
+        "locators" : [
+          { "by" : "role", "role" : "button", "name" : "Log In" },
+          { "by" : "structure", "path" : "input[value='Log In']" }
+        ]
+      },
+      "value" : null,
+      "output" : null,
+      "risk" : "SAFE",
+      "expect" : null
+    }
+  ],
+  "outcomes" : [
+    {
+      "code" : "INVALID_CREDENTIALS",
+      "description" : "The bank rejected the username/password combination",
+      "when" : {
+        "kind" : "textVisible",
+        "text" : "The username and password could not be verified."
+      }
+    }
+  ],
+  "successCondition" : {
+    "kind" : "allOf",
+    "conditions" : [
+      { "kind" : "locationContains", "value" : "/parabank/overview.htm" },
+      { "kind" : "elementVisible",   "role" : "heading", "name" : "Accounts Overview" }
+    ]
+  },
+  "provenance" : {
+    "source" : "HAND_WRITTEN",
+    "runId" : null,
+    "model" : null,
+    "recordedAt" : "2026-10-08T00:00:00Z"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "outcome" : "businessOutcome",
+  "runId" : "20261013T210238-ded4468f",
+  "capabilityId" : "parabank.read-account",
+  "capabilityVersion" : "1.0.0",
+  "recoveries" : [ ],
+  "code" : "INVALID_CREDENTIALS",
+  "message" : "The bank rejected the login",
+  "stepId" : "step-4-click"
+}
